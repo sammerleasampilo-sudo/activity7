@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery Cursor Exercise</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <style>
+        /* 2. Basic Styling */
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        #profile-img {
+            width: 300px;
+            border: 1px solid #ddd;
+            display: block;
+            /* Initially set cursor to crosshair on hover */
+            cursor: crosshair; 
+        }
+        .counter-label {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <img src="picture.png" id="profile-img" alt="Profile Picture">
+    <p class="counter-label">Clicked: <span id="count-display">0</span></p>
+
+    <script>
+        $(document).ready(function() {
+            let clicks = 0;
+
+            $("#profile-img").on("click", function() {
+                // Increment the counter
+                clicks++;
+
+                // Reset logic: If it goes past 5, reset to 1
+                if (clicks > 5) {
+                    clicks = 1;
+                }
+
+                // Update the text on screen
+                $("#count-display").text(clicks);
+
+                // Update the cursor style
+                if (clicks === 5) {
+                    $(this).css("cursor", "wait");
+                } else {
+                    $(this).css("cursor", "crosshair");
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
